@@ -1,6 +1,7 @@
 package hello.hellospring;
 
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.*;
 import hello.hellospring.service.MemberService;
 import jakarta.persistence.EntityManager;
@@ -16,12 +17,19 @@ import javax.swing.*;
 @Configuration
 public class SpringConfig {
 
-    private EntityManager entityManager;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
+
+    //    private EntityManager entityManager;
+
+//    @Autowired
+//    public SpringConfig(EntityManager entityManager) {
+//        this.entityManager = entityManager;
+//    }
 
     //jpa 에서는 필요가없음
 //    DataSource dataSource;
@@ -35,17 +43,23 @@ public class SpringConfig {
     @Bean
     public MemberService memberService() {
                             //커맨드 p 누르니 뭐가 필요한지 알려줌 (@atuo 한것과 비슷)
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository(){
+//    @Bean
+//    public MemberRepository memberRepository(){
+//
+////        return new MemoryMemberRepository();
+////        return new JdbcMemberRepository(dataSource);
+////        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JpaMemberRepository(entityManager);
+//    }
 
-//        return new MemoryMemberRepository();
-//        return new JdbcMemberRepository(dataSource);
-//        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(entityManager);
-    }
-
+//
+//    //컴포넌트 스캔을 쓰는경우에는 여기다가
+//    @Bean
+//    public TimeTraceAop timeTraceAop(){
+//        return new TimeTraceAop();
+//    }
 
 }
