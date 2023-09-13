@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
     //인터페이스와 구현체 모두 의존하고 있는중 -> DIP 위배
@@ -9,6 +13,9 @@ public class MemberServiceImpl implements MemberService{
     // 구체화관련된것은 다른곳에서 설정
     // 생성자로 주입방식이라고 함
     private final MemberRepository memberRepository;
+
+    //MemberRepository 타입에 맞는 애 찾아와서 자동으로 주입해줌
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
@@ -22,4 +29,9 @@ public class MemberServiceImpl implements MemberService{
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
+
 }
