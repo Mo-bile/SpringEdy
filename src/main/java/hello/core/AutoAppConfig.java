@@ -12,7 +12,7 @@ import static org.springframework.context.annotation.ComponentScan.*;
 @Configuration
 @ComponentScan(//읽기위해서 설정함
 
-    basePackages = "hello.core.member",
+    basePackages = "hello.core",
     //뺴줌 왜냐 Confiuration @어노에는 @Component가 붙어있다
     excludeFilters = @Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )

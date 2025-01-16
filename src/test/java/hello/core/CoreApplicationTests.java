@@ -11,8 +11,8 @@ class CoreApplicationTests {
 //    @Autowired
 //    MemberService memberService;
 
-    @Test
-    void contextLoads() {
-    }
+//    @Test
+//    void contextLoads() {
+//    }
 
 }

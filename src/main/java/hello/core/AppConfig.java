@@ -21,12 +21,12 @@ public class AppConfig {
     public MemberService memberService() {
 
         System.out.println("call AppConfig.memberService");
-        return new MemberServiceImpl(memberRepsitory());
+        return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     //타입은 인터페이스로
-    public MemberRepository memberRepsitory() {
+    public MemberRepository memberRepository() {
 
         System.out.println("call AppConfig.memberRepsitory");
         return new MemoryMemberRepository();
@@ -34,11 +34,8 @@ public class AppConfig {
 
     @Bean
     public OrderService orderService() {
-
         System.out.println("call AppConfig.orderService");
-        return new OrderServiceImpl(
-                disocuntPolicy(),
-                memberRepsitory());
+        return new OrderServiceImpl(disocuntPolicy(), memberRepository());
     }
 
     @Bean
